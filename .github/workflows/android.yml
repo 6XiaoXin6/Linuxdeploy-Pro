@@ -35,3 +35,15 @@ jobs:
       with:
         name: app-release.apk
         path: app/build/outputs/apk/release/app-release.apk
+        
+    - name: 🚀 Upload APK to GitHub Release
+      uses: softprops/action-gh-release@v2
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      with:
+        name: Release ${{ github.run_number }}
+        tag_name: v${{ github.run_number }}
+        files: |
+          app/build/outputs/apk/debug/app-debug.apk
+          app/build/outputs/apk/release/app-release.apk
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
