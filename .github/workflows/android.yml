@@ -38,7 +38,7 @@ jobs:
         
     - name: 🚀 Upload APK to GitHub Release
       uses: softprops/action-gh-release@v2
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
       with:
         name: Release ${{ github.run_number }}
         tag_name: v${{ github.run_number }}
